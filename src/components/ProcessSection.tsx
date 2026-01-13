@@ -35,14 +35,14 @@ const steps = [
 
 const ProcessSection = () => {
   return (
-    <section id="process" className="py-24 md:py-32 bg-primary text-primary-foreground">
-      <div className="container mx-auto px-6">
-        <div className="max-w-3xl mx-auto text-center mb-16">
-          <p className="text-sm font-medium text-accent mb-4">Our Process</p>
-          <h2 className="text-3xl md:text-4xl font-semibold mb-6 text-balance">
+    <section id="process" className="py-16 sm:py-24 md:py-32 bg-primary text-primary-foreground">
+      <div className="container mx-auto px-4 sm:px-6">
+        <div className="max-w-3xl mx-auto text-center mb-12 sm:mb-16">
+          <p className="text-xs sm:text-sm font-medium text-accent mb-3 sm:mb-4">Our Process</p>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold mb-4 sm:mb-6 text-balance">
             How we work together
           </h2>
-          <p className="text-lg text-primary-foreground/70 text-balance">
+          <p className="text-base sm:text-lg text-primary-foreground/70 text-balance">
             A structured approach that delivers results, not just promises.
           </p>
         </div>
@@ -50,33 +50,33 @@ const ProcessSection = () => {
         <div className="max-w-4xl mx-auto">
           <div className="relative">
             {/* Vertical line */}
-            <div className="absolute left-6 md:left-1/2 top-0 bottom-0 w-px bg-primary-foreground/10 md:-translate-x-px" />
+            <div className="absolute left-6 sm:left-8 md:left-1/2 top-0 bottom-0 w-px bg-primary-foreground/10 md:-translate-x-px" />
             
             {steps.map((step, index) => (
               <div 
                 key={step.number}
-                className={`relative flex items-start gap-6 mb-12 last:mb-0 ${
+                className={`relative flex items-start gap-4 sm:gap-6 mb-8 sm:mb-12 last:mb-0 ${
                   index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
                 }`}
               >
                 {/* Number circle */}
-                <div className="relative z-10 flex-shrink-0 w-12 h-12 rounded-full bg-accent flex items-center justify-center text-sm font-semibold text-accent-foreground md:absolute md:left-1/2 md:-translate-x-1/2">
+                <div className="relative z-10 flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-accent flex items-center justify-center text-xs sm:text-sm font-semibold text-accent-foreground md:absolute md:left-1/2 md:-translate-x-1/2">
                   {step.number}
                 </div>
                 
                 {/* Content */}
                 <div className={`flex-1 md:w-1/2 ${
-                  index % 2 === 0 ? 'md:pr-16 md:text-right' : 'md:pl-16'
+                  index % 2 === 0 ? 'md:pr-12 lg:pr-16 md:text-right' : 'md:pl-12 lg:pl-16'
                 }`}>
-                  <div className="p-6 rounded-xl bg-primary-foreground/5 border border-primary-foreground/10">
-                    <div className={`flex items-center gap-3 mb-3 ${
+                  <div className="p-4 sm:p-6 rounded-xl bg-primary-foreground/5 border border-primary-foreground/10">
+                    <div className={`flex items-center gap-2 sm:gap-3 mb-2 sm:mb-3 ${
                       index % 2 === 0 ? 'md:justify-end' : ''
                     }`}>
-                      <step.icon className="w-5 h-5 text-accent md:hidden" />
-                      <h3 className="text-lg font-medium">{step.title}</h3>
-                      <step.icon className="w-5 h-5 text-accent hidden md:block" />
+                      <step.icon className="w-4 h-4 sm:w-5 sm:h-5 text-accent md:hidden flex-shrink-0" />
+                      <h3 className="text-base sm:text-lg font-medium">{step.title}</h3>
+                      <step.icon className="w-5 h-5 text-accent hidden md:block flex-shrink-0" />
                     </div>
-                    <p className="text-sm text-primary-foreground/70 leading-relaxed">
+                    <p className="text-xs sm:text-sm text-primary-foreground/70 leading-relaxed">
                       {step.description}
                     </p>
                   </div>

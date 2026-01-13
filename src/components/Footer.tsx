@@ -1,16 +1,9 @@
-import logo from "@/assets/img/logo.png";
-
 const Footer = () => {
   return (
-    <footer className="py-8 border-t border-border">
-      <div className="container mx-auto px-6">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-          <img 
-            src={logo} 
-            alt="AIVANCE Logo" 
-            className="h-8 w-auto"
-          />
-          <p className="text-sm text-muted-foreground">
+    <footer className="py-6 sm:py-8 border-t border-primary-foreground/10 bg-primary text-primary-foreground">
+      <div className="container mx-auto px-4 sm:px-6">
+        <div className="flex flex-col md:flex-row items-center justify-center gap-3 sm:gap-4">
+          <p className="text-xs sm:text-sm text-primary-foreground/70 text-center">
             © {new Date().getFullYear()} AIVANCE. All rights reserved.
           </p>
         </div>

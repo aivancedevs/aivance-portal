@@ -137,4 +137,8 @@
   .shadow-elevated {
     box-shadow: var(--shadow-elevated);
   }
+
+  .bg-gradient-radial {
+    background: radial-gradient(circle, var(--tw-gradient-stops));
+  }
 }
