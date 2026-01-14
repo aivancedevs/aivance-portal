@@ -9,12 +9,12 @@ import Footer from "@/components/Footer";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-primary">
       <Navbar />
       <HeroSection />
+      <LogoCarousel />
       <ProblemsSection />
       <SolutionsSection />
-      <LogoCarousel />
       <ProcessSection />
       <CTASection />
       <Footer />
