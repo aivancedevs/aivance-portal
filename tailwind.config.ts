@@ -86,7 +86,7 @@ export default {
         },
         "scroll": {
           from: { transform: "translateX(0)" },
-          to: { transform: "translateX(-50%)" },
+          to: { transform: "translateX(-25%)" },
         },
         "breathe": {
           "0%, 100%": { 
@@ -122,6 +122,14 @@ export default {
             transform: "scale(1.2) translate(30px, 30px)",
           },
         },
+        "float-text": {
+          "0%, 100%": {
+            transform: "translateY(0px)",
+          },
+          "50%": {
+            transform: "translateY(-10px)",
+          },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -132,6 +140,7 @@ export default {
         "breathe": "breathe 12s ease-in-out infinite",
         "breathe-2": "breathe-2 15s ease-in-out infinite",
         "breathe-3": "breathe-3 18s ease-in-out infinite",
+        "float-text": "float-text 3s ease-in-out infinite",
       },
     },
   },

@@ -5,15 +5,15 @@ const logos = [
   "Dala Solutions",
   "GBA Importaciones",
   "Horizon",
-  "FlowOps",
-  "ScaleUp",
+  "Qualita",
+  "DisPar",
 ];
 
 const LogoCarousel = () => {
   return (
-    <section className="py-12 sm:py-16 md:py-20 border-y border-primary-foreground/10 bg-primary text-primary-foreground">
-      <div className="container mx-auto px-4 sm:px-6 mb-6 sm:mb-8">
-        <p className="text-center text-xs sm:text-sm text-primary-foreground/70">
+    <section className="py-10 sm:py-14 md:py-18 border-y border-primary-foreground/10 bg-primary text-primary-foreground">
+      <div className="container mx-auto px-4 sm:px-6 mb-4 sm:mb-6">
+        <p className="text-center text-sm sm:text-base md:text-xl font-semibold tracking-tight text-primary-foreground/80">
           Trusted by forward-thinking companies
         </p>
       </div>
@@ -25,12 +25,12 @@ const LogoCarousel = () => {
         
         {/* Scrolling container */}
         <div className="flex animate-scroll">
-          {[...logos, ...logos].map((logo, index) => (
+          {[...logos, ...logos, ...logos, ...logos].map((logo, index) => (
             <div 
               key={index}
               className="flex-shrink-0 px-6 sm:px-8 md:px-12 py-4"
             >
-              <div className="text-sm sm:text-base md:text-lg font-medium text-primary-foreground/50 hover:text-primary-foreground/70 transition-colors whitespace-nowrap">
+              <div className="text-sm sm:text-base md:text-lg font-medium text-primary-foreground/50 hover:text-primary-foreground/70 transition-all duration-300 whitespace-nowrap hover:scale-110 cursor-pointer">
                 {logo}
               </div>
             </div>
