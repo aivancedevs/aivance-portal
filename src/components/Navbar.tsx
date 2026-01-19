@@ -76,7 +76,7 @@ const Navbar = () => {
           <div className="flex items-center gap-3">
             {/* Schedule a Meeting Button - Desktop */}
             <a
-              href="https://calendly.com/aivancedevs"
+              href="https://calendly.com/aivancedevs/30min"
               target="_blank"
               rel="noopener noreferrer"
               className="hidden sm:flex items-center gap-2 text-base font-semibold px-3 py-1.5 rounded-lg border transition-all duration-300 text-primary-foreground border-accent/70 bg-accent/20 hover:bg-accent hover:text-accent-foreground shadow-lg shadow-black/20"
