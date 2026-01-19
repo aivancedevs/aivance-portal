@@ -1,50 +1,19 @@
 import { Search, Lightbulb, Rocket, BarChart3, HeartHandshake, LucideIcon } from "lucide-react";
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
-
-const steps = [
-  {
-    number: "01",
-    icon: Search,
-    title: "Understand the Problem",
-    description: "We dive deep into your operations to identify the root causes of inefficiency, not just symptoms.",
-  },
-  {
-    number: "02",
-    icon: Lightbulb,
-    title: "Design Improvements",
-    description: "We map out solutions that deliver continuous value, focusing on high-impact, low-friction changes.",
-  },
-  {
-    number: "03",
-    icon: Rocket,
-    title: "Execute in Sprints",
-    description: "We plan and deliver in focused sprints, shipping working solutions quickly and iterating based on feedback.",
-  },
-  {
-    number: "04",
-    icon: BarChart3,
-    title: "Validate with Metrics",
-    description: "Every change is measured. Real-time dashboards show the impact on your key performance indicators.",
-  },
-  {
-    number: "05",
-    icon: HeartHandshake,
-    title: "Ongoing Support",
-    description: "We don't disappear after launch. Continuous monitoring, updates, and optimization are part of the package.",
-  },
-];
+import { useLanguage } from "@/contexts/LanguageContext";
 
 interface StepItemProps {
   step: {
     number: string;
     icon: LucideIcon;
-    title: string;
-    description: string;
+    titleKey: string;
+    descriptionKey: string;
   };
   index: number;
 }
 
 const StepItem = ({ step, index }: StepItemProps) => {
+  const { t } = useLanguage();
   const { elementRef, isVisible } = useIntersectionObserver({
     threshold: 0.2,
     rootMargin: "0px 0px -50px 0px",
@@ -79,11 +48,11 @@ const StepItem = ({ step, index }: StepItemProps) => {
             index % 2 === 0 ? 'md:justify-end' : ''
           }`}>
             <step.icon className="w-4 h-4 sm:w-5 sm:h-5 text-accent md:hidden flex-shrink-0" />
-            <h3 className="text-base sm:text-lg font-medium">{step.title}</h3>
+            <h3 className="text-base sm:text-lg font-medium">{t(step.titleKey)}</h3>
             <step.icon className="w-5 h-5 text-accent hidden md:block flex-shrink-0" />
           </div>
           <p className="text-xs sm:text-sm text-primary-foreground/70 leading-relaxed">
-            {step.description}
+            {t(step.descriptionKey)}
           </p>
         </div>
       </div>
@@ -92,16 +61,51 @@ const StepItem = ({ step, index }: StepItemProps) => {
 };
 
 const ProcessSection = () => {
+  const { t } = useLanguage();
+
+  const steps = [
+    {
+      number: "01",
+      icon: Search,
+      titleKey: "process.step1.title",
+      descriptionKey: "process.step1.description",
+    },
+    {
+      number: "02",
+      icon: Lightbulb,
+      titleKey: "process.step2.title",
+      descriptionKey: "process.step2.description",
+    },
+    {
+      number: "03",
+      icon: Rocket,
+      titleKey: "process.step3.title",
+      descriptionKey: "process.step3.description",
+    },
+    {
+      number: "04",
+      icon: BarChart3,
+      titleKey: "process.step4.title",
+      descriptionKey: "process.step4.description",
+    },
+    {
+      number: "05",
+      icon: HeartHandshake,
+      titleKey: "process.step5.title",
+      descriptionKey: "process.step5.description",
+    },
+  ];
+
   return (
     <section id="process" className="py-16 sm:py-24 md:py-32 bg-primary text-primary-foreground">
       <div className="container mx-auto px-4 sm:px-6">
         <div className="max-w-3xl mx-auto text-center mb-12 sm:mb-16">
-          <p className="text-xs sm:text-sm font-medium text-accent mb-3 sm:mb-4">Our Process</p>
+          <p className="text-xs sm:text-sm font-medium text-accent mb-3 sm:mb-4">{t("process.subtitle")}</p>
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold mb-4 sm:mb-6 text-balance">
-            How we work together
+            {t("process.title")}
           </h2>
           <p className="text-base sm:text-lg text-primary-foreground/70 text-balance">
-            A structured approach that delivers results, not just promises.
+            {t("process.description")}
           </p>
         </div>
 

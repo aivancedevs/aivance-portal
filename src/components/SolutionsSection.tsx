@@ -1,46 +1,23 @@
 import { Cog, MessageSquare, Phone, Link2, Play } from "lucide-react";
 import { useState } from "react";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
+import { useLanguage } from "@/contexts/LanguageContext";
 import processAutomationVideo from "@/assets/videos/process-automation.mp4";
 import systemIntegrationsVideo from "@/assets/videos/system-integrations.mp4";
 
-const solutions = [
-  {
-    icon: Cog,
-    title: "Process Automation",
-    description: "Transform manual workflows into automated systems that run 24/7 without intervention.",
-    videoType: "local" as const,
-    videoSrc: processAutomationVideo,
-  },
-  {
-    icon: MessageSquare,
-    title: "Messaging Agents",
-    description: "Intelligent chatbots for WhatsApp, web, and internal tools that handle conversations at scale.",
-    videoType: "youtube" as const,
-    videoSrc: "https://www.youtube.com/embed/soBKKk4YOWg",
-  },
-  {
-    icon: Phone,
-    title: "Voice Agents",
-    description: "AI-powered voice assistants for customer support, scheduling, and outbound calls.",
-    videoType: "youtube" as const,
-    videoSrc: "https://www.youtube.com/embed/k5vIklklj64",
-  },
-  {
-    icon: Link2,
-    title: "System Integrations",
-    description: "Connect your tools and databases to create seamless data flow across your entire stack.",
-    videoType: "local" as const,
-    videoSrc: systemIntegrationsVideo,
-  },
-];
-
 interface SolutionCardProps {
-  solution: typeof solutions[0];
+  solution: {
+    icon: typeof Cog;
+    titleKey: string;
+    descriptionKey: string;
+    videoType: "local" | "youtube";
+    videoSrc: string;
+  };
 }
 
 const SolutionCard = ({ solution }: SolutionCardProps) => {
   const [isPlaying, setIsPlaying] = useState(false);
+  const { t } = useLanguage();
 
   return (
     <div className="group p-4 sm:p-6 rounded-xl bg-primary-foreground/5 border border-primary-foreground/10 hover:border-accent/50 hover:shadow-card transition-all duration-300">
@@ -65,7 +42,7 @@ const SolutionCard = ({ solution }: SolutionCardProps) => {
                 >
                   <img
                     src={`https://img.youtube.com/vi/${solution.videoSrc.split('/').pop()}/maxresdefault.jpg`}
-                    alt={solution.title}
+                    alt={t(solution.titleKey)}
                     className="absolute inset-0 w-full h-full object-cover"
                   />
                   <div className="absolute inset-0 bg-black/30 group-hover/play:bg-black/40 transition-colors" />
@@ -76,7 +53,7 @@ const SolutionCard = ({ solution }: SolutionCardProps) => {
               ) : (
                 <iframe
                   src={`${solution.videoSrc}?autoplay=1`}
-                  title={solution.title}
+                  title={t(solution.titleKey)}
                   className="w-full h-full"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
@@ -92,34 +69,66 @@ const SolutionCard = ({ solution }: SolutionCardProps) => {
           <solution.icon className="w-4 h-4 sm:w-5 sm:h-5 text-accent-foreground" />
         </div>
         <h3 className="text-base sm:text-lg font-medium text-primary-foreground">
-          {solution.title}
+          {t(solution.titleKey)}
         </h3>
       </div>
       <p className="text-primary-foreground/70 text-xs sm:text-sm leading-relaxed">
-        {solution.description}
+        {t(solution.descriptionKey)}
       </p>
     </div>
   );
 };
 
 const SolutionsSection = () => {
+  const { t } = useLanguage();
+
+  const solutions = [
+    {
+      icon: Cog,
+      titleKey: "solutions.automation.title",
+      descriptionKey: "solutions.automation.description",
+      videoType: "local" as const,
+      videoSrc: processAutomationVideo,
+    },
+    {
+      icon: MessageSquare,
+      titleKey: "solutions.messaging.title",
+      descriptionKey: "solutions.messaging.description",
+      videoType: "youtube" as const,
+      videoSrc: "https://www.youtube.com/embed/soBKKk4YOWg",
+    },
+    {
+      icon: Phone,
+      titleKey: "solutions.voice.title",
+      descriptionKey: "solutions.voice.description",
+      videoType: "youtube" as const,
+      videoSrc: "https://www.youtube.com/embed/k5vIklklj64",
+    },
+    {
+      icon: Link2,
+      titleKey: "solutions.integrations.title",
+      descriptionKey: "solutions.integrations.description",
+      videoType: "local" as const,
+      videoSrc: systemIntegrationsVideo,
+    },
+  ];
+
   return (
     <section id="solutions" className="py-16 sm:py-24 md:py-32 bg-primary text-primary-foreground">
       <div className="container mx-auto px-4 sm:px-6">
         <div className="max-w-3xl mx-auto text-center mb-12 sm:mb-16">
-          <p className="text-xs sm:text-sm font-medium text-accent mb-3 sm:mb-4">What We Build</p>
+          <p className="text-xs sm:text-sm font-medium text-accent mb-3 sm:mb-4">{t("solutions.subtitle")}</p>
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold text-primary-foreground mb-4 sm:mb-6 text-balance">
-            Automation that works for you
+            {t("solutions.title")}
           </h2>
           <p className="text-base sm:text-lg text-primary-foreground/70 text-balance">
-            We design and implement solutions tailored to your specific 
-            operational challenges.
+            {t("solutions.description")}
           </p>
         </div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 max-w-6xl mx-auto">
-          {solutions.map((solution) => (
-            <SolutionCard key={solution.title} solution={solution} />
+          {solutions.map((solution, index) => (
+            <SolutionCard key={index} solution={solution} />
           ))}
         </div>
       </div>
