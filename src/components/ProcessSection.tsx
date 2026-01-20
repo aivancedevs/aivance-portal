@@ -1,6 +1,7 @@
 import { Search, Lightbulb, Rocket, BarChart3, HeartHandshake, LucideIcon } from "lucide-react";
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 import { useLanguage } from "@/contexts/LanguageContext";
+import AnimatedBackground, { processBackgroundConfig } from "./AnimatedBackground";
 
 interface StepItemProps {
   step: {
@@ -97,8 +98,9 @@ const ProcessSection = () => {
   ];
 
   return (
-    <section id="process" className="py-16 sm:py-24 md:py-32 bg-primary text-primary-foreground">
-      <div className="container mx-auto px-4 sm:px-6">
+    <section id="process" className="relative py-16 sm:py-24 md:py-32 bg-primary text-primary-foreground overflow-hidden">
+      <AnimatedBackground circles={processBackgroundConfig} />
+      <div className="relative z-10 container mx-auto px-4 sm:px-6">
         <div className="max-w-3xl mx-auto text-center mb-12 sm:mb-16">
           <p className="text-xs sm:text-sm font-medium text-accent mb-3 sm:mb-4">{t("process.subtitle")}</p>
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold mb-4 sm:mb-6 text-balance">

@@ -1,49 +1,12 @@
 import { useLanguage } from "@/contexts/LanguageContext";
+import AnimatedBackground, { heroBackgroundConfig } from "./AnimatedBackground";
 
 const HeroSection = () => {
   const { t } = useLanguage();
 
   return (
     <section className="relative min-h-screen overflow-hidden bg-primary text-primary-foreground">
-      {/* Animated breathing gradient circles */}
-      <div className="absolute inset-0 z-0 overflow-hidden">
-        {/* Circle 1 - Top Left */}
-        <div 
-          className="absolute w-[600px] h-[600px] rounded-full bg-gradient-radial from-accent/50 via-accent/25 to-transparent blur-3xl animate-breathe"
-          style={{ 
-            top: "-200px",
-            left: "-200px",
-          }}
-        />
-        {/* Circle 2 - Top Right */}
-        <div 
-          className="absolute w-[500px] h-[500px] rounded-full bg-gradient-radial from-accent/45 via-accent/20 to-transparent blur-3xl animate-breathe-2"
-          style={{ 
-            top: "-150px",
-            right: "-150px",
-            animationDelay: "2s",
-          }}
-        />
-        {/* Circle 3 - Bottom Left */}
-        <div 
-          className="absolute w-[600px] h-[600px] rounded-full bg-gradient-radial from-accent/40 via-accent/15 to-transparent blur-3xl animate-breathe-3"
-          style={{ 
-            bottom: "120px",
-            left: "100px",
-            animationDelay: "4s",
-          }}
-        />
-        {/* Circle 4 - Center Right */}
-        <div 
-          className="absolute w-[400px] h-[400px] rounded-full bg-gradient-radial from-accent/35 via-accent/12 to-transparent blur-3xl animate-breathe"
-          style={{ 
-            top: "50%",
-            right: "10%",
-            transform: "translateY(-50%)",
-            animationDelay: "6s",
-          }}
-        />
-      </div>
+      <AnimatedBackground circles={heroBackgroundConfig} />
 
       {/* Content positioned near navbar */}
       <div className="relative z-10 flex items-center justify-center min-h-screen pt-32 sm:pt-40 md:pt-48 pb-16 sm:pb-24 md:pb-32">

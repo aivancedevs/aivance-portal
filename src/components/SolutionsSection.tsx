@@ -2,6 +2,7 @@ import { Cog, MessageSquare, Phone, Link2, Play } from "lucide-react";
 import { useState } from "react";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { useLanguage } from "@/contexts/LanguageContext";
+import AnimatedBackground, { solutionsBackgroundConfig } from "./AnimatedBackground";
 import processAutomationVideo from "@/assets/videos/process-automation.mp4";
 import systemIntegrationsVideo from "@/assets/videos/system-integrations.mp4";
 
@@ -114,8 +115,9 @@ const SolutionsSection = () => {
   ];
 
   return (
-    <section id="solutions" className="py-16 sm:py-24 md:py-32 bg-primary text-primary-foreground">
-      <div className="container mx-auto px-4 sm:px-6">
+    <section id="solutions" className="relative py-16 sm:py-24 md:py-32 bg-primary text-primary-foreground overflow-hidden">
+      <AnimatedBackground circles={solutionsBackgroundConfig} />
+      <div className="relative z-10 container mx-auto px-4 sm:px-6">
         <div className="max-w-3xl mx-auto text-center mb-12 sm:mb-16">
           <p className="text-xs sm:text-sm font-medium text-accent mb-3 sm:mb-4">{t("solutions.subtitle")}</p>
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold text-primary-foreground mb-4 sm:mb-6 text-balance">
