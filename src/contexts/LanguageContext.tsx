@@ -17,6 +17,7 @@ const translations: Record<Language, Record<string, string>> = {
     "nav.problems": "Problemas",
     "nav.solutions": "Soluciones",
     "nav.process": "Cómo Trabajamos",
+    "nav.templates": "Plantillas",
     "nav.schedule": "Agendar Reunión",
     
     // HeroSection
@@ -84,12 +85,27 @@ const translations: Record<Language, Record<string, string>> = {
     
     // Language
     "language.label": "Idioma:",
+    
+    // TemplatesPage
+    "templates.title": "Plantillas",
+    "templates.subtitle": "Consulta por nuestras plantillas",
+    "templates.description": "Completa el formulario para consultar sobre nuestras plantillas disponibles.",
+    "templates.form.name": "Nombre",
+    "templates.form.email": "Email",
+    "templates.form.template": "Plantilla",
+    "templates.form.comment": "Comentario",
+    "templates.form.submit": "Enviar",
+    "templates.form.name.placeholder": "Ingresa tu nombre",
+    "templates.form.email.placeholder": "Ingresa tu email",
+    "templates.form.template.placeholder": "Selecciona una plantilla",
+    "templates.form.comment.placeholder": "Escribe tu comentario o consulta",
   },
   en: {
     // Navbar
     "nav.problems": "Problems",
     "nav.solutions": "Solutions",
     "nav.process": "How We Work",
+    "nav.templates": "Templates",
     "nav.schedule": "Schedule a Meeting",
     
     // HeroSection
@@ -157,6 +173,20 @@ const translations: Record<Language, Record<string, string>> = {
     
     // Language
     "language.label": "Language:",
+    
+    // TemplatesPage
+    "templates.title": "Templates",
+    "templates.subtitle": "Inquire about our templates",
+    "templates.description": "Fill out the form to inquire about our available templates.",
+    "templates.form.name": "Name",
+    "templates.form.email": "Email",
+    "templates.form.template": "Template",
+    "templates.form.comment": "Comment",
+    "templates.form.submit": "Send",
+    "templates.form.name.placeholder": "Enter your name",
+    "templates.form.email.placeholder": "Enter your email",
+    "templates.form.template.placeholder": "Select a template",
+    "templates.form.comment.placeholder": "Write your comment or inquiry",
   },
 };
 

@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Menu, Calendar, ChevronDown } from "lucide-react";
 import { useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
   Sheet,
   SheetContent,
@@ -18,17 +19,31 @@ import logo from "@/assets/img/logo.png";
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { language, setLanguage, t } = useLanguage();
+  const location = useLocation(); 
+  const navigate = useNavigate();
 
   const scrollToSection = (id: string) => {
-    const element = document.getElementById(id);
-    element?.scrollIntoView({ behavior: "smooth" });
+    // Si estamos en otra página que no sea la principal, redirigir a la principal con el hash
+    if (location.pathname !== "/") {
+      navigate(`/#${id}`);
+      // Esperar a que la página cargue y luego hacer scroll
+      setTimeout(() => {
+        const element = document.getElementById(id);
+        element?.scrollIntoView({ behavior: "smooth" });
+      }, 100);
+    } else {
+      // Si estamos en la página principal, hacer scroll directamente
+      const element = document.getElementById(id);
+      element?.scrollIntoView({ behavior: "smooth" });
+    }
     setIsOpen(false);
   };
 
   const navLinks = [
-    { id: "problems", key: "nav.problems" },
-    { id: "solutions", key: "nav.solutions" },
-    { id: "process", key: "nav.process" },
+    { id: "problems", key: "nav.problems", isRoute: false },
+    { id: "solutions", key: "nav.solutions", isRoute: false },
+    { id: "process", key: "nav.process", isRoute: false },
+    { id: "plantillas", key: "nav.templates", isRoute: true, path: "/plantillas" },
   ];
 
   return (
@@ -54,23 +69,35 @@ const Navbar = () => {
       
       <div className="container mx-auto px-4 sm:px-6 py-2 transition-all duration-300 relative z-10">
         <div className="flex items-center justify-between">
-          <img
-            src={logo}
-            alt="AIVANCE Logo"
-            className="h-7 sm:h-8 w-auto transition-all duration-300 filter brightness-0 invert drop-shadow-[0_0_10px_rgba(0,0,0,0.7)]"
-          />
+          <Link to="/">
+            <img
+              src={logo}
+              alt="AIVANCE Logo"
+              className="h-7 sm:h-8 w-auto transition-all duration-300 filter brightness-0 invert drop-shadow-[0_0_10px_rgba(0,0,0,0.7)] cursor-pointer"
+            />
+          </Link>
           
           {/* Desktop Navigation - Absolutely centered */}
           <div className="hidden md:flex items-center gap-8 absolute left-1/2 -translate-x-1/2">
-            {navLinks.map((link) => (
-              <button
-                key={link.id}
-                onClick={() => scrollToSection(link.id)}
-                className="text-base font-semibold px-3 py-1.5 rounded-lg border transition-all duration-300 text-primary-foreground border-accent/70 bg-accent/20 hover:bg-accent hover:text-accent-foreground shadow-lg shadow-black/20"
-              >
-                {t(link.key)}
-              </button>
-            ))}
+            {navLinks.map((link) => 
+              link.isRoute ? (
+                <Link
+                  key={link.id}
+                  to={link.path || "/"}
+                  className="text-base font-semibold px-3 py-1.5 rounded-lg border transition-all duration-300 text-primary-foreground border-accent/70 bg-accent/20 hover:bg-accent hover:text-accent-foreground shadow-lg shadow-black/20"
+                >
+                  {t(link.key)}
+                </Link>
+              ) : (
+                <button
+                  key={link.id}
+                  onClick={() => scrollToSection(link.id)}
+                  className="text-base font-semibold px-3 py-1.5 rounded-lg border transition-all duration-300 text-primary-foreground border-accent/70 bg-accent/20 hover:bg-accent hover:text-accent-foreground shadow-lg shadow-black/20"
+                >
+                  {t(link.key)}
+                </button>
+              )
+            )}
           </div>
 
           <div className="flex items-center gap-3">
@@ -130,15 +157,26 @@ const Navbar = () => {
                 className="w-[300px] sm:w-[400px] bg-primary text-primary-foreground border-l border-primary-foreground/10 px-4 pt-8 pb-6"
               >
                 <div className="flex flex-col gap-5">
-                  {navLinks.map((link) => (
-                    <button
-                      key={link.id}
-                      onClick={() => scrollToSection(link.id)}
-                      className="text-left text-lg font-semibold px-3.5 py-3 rounded-xl border border-primary-foreground/20 bg-primary/5 hover:bg-primary-foreground/10 hover:border-primary-foreground/40 hover:shadow-lg transition-all duration-300 text-primary-foreground"
-                    >
-                      {t(link.key)}
-                    </button>
-                  ))}
+                  {navLinks.map((link) => 
+                    link.isRoute ? (
+                      <Link
+                        key={link.id}
+                        to={link.path || "/"}
+                        onClick={() => setIsOpen(false)}
+                        className="text-left text-lg font-semibold px-3.5 py-3 rounded-xl border border-primary-foreground/20 bg-primary/5 hover:bg-primary-foreground/10 hover:border-primary-foreground/40 hover:shadow-lg transition-all duration-300 text-primary-foreground"
+                      >
+                        {t(link.key)}
+                      </Link>
+                    ) : (
+                      <button
+                        key={link.id}
+                        onClick={() => scrollToSection(link.id)}
+                        className="text-left text-lg font-semibold px-3.5 py-3 rounded-xl border border-primary-foreground/20 bg-primary/5 hover:bg-primary-foreground/10 hover:border-primary-foreground/40 hover:shadow-lg transition-all duration-300 text-primary-foreground"
+                      >
+                        {t(link.key)}
+                      </button>
+                    )
+                  )}
                   
                   {/* Language Selector - Mobile */}
                   <div className="flex items-center gap-2">
