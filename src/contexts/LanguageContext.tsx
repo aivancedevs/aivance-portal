@@ -52,6 +52,10 @@ const translations: Record<Language, Record<string, string>> = {
     "solutions.voice.description": "Asistentes de voz con IA para atención al cliente, programación y llamadas salientes.",
     "solutions.integrations.title": "Integraciones de Sistemas",
     "solutions.integrations.description": "Conecta tus herramientas y bases de datos para crear un flujo de datos fluido en toda tu pila tecnológica.",
+    "solutions.features.attention": "Atención inteligente 24/7",
+    "solutions.features.kb": "Respuestas en base a KB",
+    "solutions.features.ai": "AI integrada en cada interacción",
+    "solutions.features.integration": "Conexión a sistemas de tu empresa",
     
     // ProcessSection
     "process.subtitle": "Nuestro Proceso",
@@ -121,6 +125,10 @@ const translations: Record<Language, Record<string, string>> = {
     "solutions.voice.description": "AI-powered voice assistants for customer support, scheduling, and outbound calls.",
     "solutions.integrations.title": "System Integrations",
     "solutions.integrations.description": "Connect your tools and databases to create seamless data flow across your entire stack.",
+    "solutions.features.attention": "Intelligent 24/7 support",
+    "solutions.features.kb": "KB-based responses",
+    "solutions.features.ai": "AI integrated in every interaction",
+    "solutions.features.integration": "Connection to your company's systems",
     
     // ProcessSection
     "process.subtitle": "Our Process",

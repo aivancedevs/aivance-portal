@@ -1,8 +1,16 @@
-import { Cog, MessageSquare, Phone, Link2 } from "lucide-react";
+import { Cog, MessageSquare, Phone, Link2, CheckSquare, MessageCircle, Brain, Grid3x3 } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import AnimatedBackground, { solutionsBackgroundConfig } from "./AnimatedBackground";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
-import agenteIa from "@/assets/img/agente_ia.png";
+import agenteIa from "@/assets/img/agente-ia.png";
+import agenteVoz from "@/assets/img/agente-voz.png";
+import flujoN8n from "@/assets/img/flujo-n8n.png";
+import { useEffect, useRef, useState } from "react";
+
+interface Feature {
+  icon: typeof CheckSquare;
+  textKey: string;
+}
 
 interface SolutionCardProps {
   solution: {
@@ -10,23 +18,80 @@ interface SolutionCardProps {
     titleKey: string;
     descriptionKey: string;
     imageSrc?: string;
+    features?: Feature[];
   };
 }
 
 const SolutionCard = ({ solution }: SolutionCardProps) => {
   const { t } = useLanguage();
+  const [isVisible, setIsVisible] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
+  const cardRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsVisible(true);
+          } else {
+            setIsVisible(false);
+          }
+        });
+      },
+      {
+        threshold: 0.1, // Se activa cuando el 10% del elemento es visible
+        rootMargin: "0px 0px -50px 0px", // Se activa un poco antes de que esté completamente visible
+      }
+    );
+
+    if (cardRef.current) {
+      observer.observe(cardRef.current);
+    }
+
+    return () => {
+      if (cardRef.current) {
+        observer.unobserve(cardRef.current);
+      }
+    };
+  }, []);
 
   return (
-    <div className="group h-full">
-      <div className="flex flex-col h-full rounded-2xl bg-primary-foreground/5 border border-primary-foreground/10 overflow-hidden transition-all duration-500 group-hover:border-accent/60 group-hover:shadow-xl">
+    <div 
+      ref={cardRef}
+      className={`group h-full transition-opacity duration-700 ${
+        isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+      }`}
+    >
+      <div 
+        className="flex flex-col h-full rounded-2xl bg-primary-foreground/5 border border-primary-foreground/10 overflow-hidden transition-all duration-500 group-hover:border-accent/60 group-hover:shadow-xl"
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+      >
         {/* Área superior tipo ilustración genérica */}
-        <div className="relative w-full bg-gradient-to-br from-primary-foreground/5 via-accent/20 to-accent/40 border-b border-primary-foreground/10">
-          <div className="aspect-[16/9] w-full flex items-center justify-center px-4 sm:px-8 py-4 sm:py-6 transition-transform duration-500 group-hover:scale-[1.02]">
+        {/* RECUADRO EXTERIOR: Controla el fondo y borde superior */}
+        <div className="relative w-full bg-gradient-to-br from-primary-foreground/5 via-accent/20 to-accent/40 border-b border-primary-foreground/10 overflow-hidden">
+          {/* Efecto de ola animado */}
+          {isHovered && (
+            <div className="absolute inset-0 opacity-50 overflow-hidden pointer-events-none">
+              <div 
+                className="absolute inset-0"
+                style={{
+                  background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent)',
+                  backgroundSize: '200% 100%',
+                  backgroundPosition: '-200% 0',
+                  animation: 'wave 2s ease-in-out',
+                }}
+              ></div>
+            </div>
+          )}
+          {/* RECUADRO CONTENEDOR: Controla la proporción (aspect-ratio) y padding interno */}
+          <div className="aspect-[11/10] w-full flex items-center justify-center px-4 sm:px-8 py-4 sm:py-6 transition-transform duration-500 group-hover:scale-[1.02] relative z-10">
             {solution.imageSrc ? (
               <img
                 src={solution.imageSrc}
                 alt={t(solution.titleKey)}
-                className="w-full h-full object-contain rounded-2xl shadow-lg"
+                className="max-w-full max-h-full w-auto h-auto object-contain rounded-2xl"
               />
             ) : (
               <div className="w-full max-w-md h-full rounded-2xl bg-background/80 backdrop-blur-md border border-primary-foreground/10 shadow-lg flex items-center justify-center">
@@ -37,17 +102,30 @@ const SolutionCard = ({ solution }: SolutionCardProps) => {
         </div>
 
         {/* Contenido textual */}
-        <div className="flex items-start gap-3 sm:gap-4 px-5 sm:px-6 py-4 sm:py-5 transition-transform duration-500 group-hover:scale-[1.02]">
-          <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl gradient-accent flex items-center justify-center flex-shrink-0">
-            <solution.icon className="w-4 h-4 sm:w-5 sm:h-5 text-accent-foreground" />
-          </div>
+        <div className="px-5 sm:px-6 py-4 sm:py-5 -mt-4 sm:-mt-11 transition-transform duration-500 group-hover:scale-[1.02]">
           <div className="text-left">
-            <h3 className="text-base sm:text-lg font-semibold text-primary-foreground">
-              {t(solution.titleKey)}
+            <h3 className="text-lg sm:text-2xl font-semibold text-primary-foreground relative z-20 drop-shadow-lg">
+              <span className="inline-block px-3 py-1.5 rounded-lg bg-primary/70 backdrop-blur-md border border-primary-foreground/20 shadow-lg">
+                {t(solution.titleKey)}
+              </span>
             </h3>
             <p className="mt-1 text-primary-foreground/70 text-xs sm:text-sm leading-relaxed">
               {t(solution.descriptionKey)}
             </p>
+            {solution.features && solution.features.length > 0 && (
+              <div className="mt-4 rounded-xl bg-gradient-to-b from-primary-foreground/5 to-accent/20 p-4">
+                <ul className="space-y-2.5">
+                  {solution.features.map((feature, index) => (
+                    <li key={index} className="flex items-start gap-2.5">
+                      <feature.icon className="w-4 h-4 text-accent mt-0.5 flex-shrink-0" />
+                      <span className="text-primary-foreground/80 text-xs sm:text-sm leading-relaxed">
+                        {t(feature.textKey)}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -60,25 +138,51 @@ const SolutionsSection = () => {
 
   const solutions = [
     {
-      icon: Cog,
-      titleKey: "solutions.automation.title",
-      descriptionKey: "solutions.automation.description",
+      icon: Phone,
+      titleKey: "solutions.voice.title",
+      descriptionKey: "solutions.voice.description",
+      imageSrc: agenteVoz,
+      features: [
+        { icon: CheckSquare, textKey: "solutions.features.attention" },
+        { icon: MessageCircle, textKey: "solutions.features.kb" },
+        { icon: Brain, textKey: "solutions.features.ai" },
+        { icon: Grid3x3, textKey: "solutions.features.integration" },
+      ],
     },
     {
       icon: MessageSquare,
       titleKey: "solutions.messaging.title",
       descriptionKey: "solutions.messaging.description",
       imageSrc: agenteIa,
-    },
+      features: [
+        { icon: CheckSquare, textKey: "solutions.features.attention" },
+        { icon: MessageCircle, textKey: "solutions.features.kb" },
+        { icon: Brain, textKey: "solutions.features.ai" },
+        { icon: Grid3x3, textKey: "solutions.features.integration" },
+      ],
+    },    
     {
-      icon: Phone,
-      titleKey: "solutions.voice.title",
-      descriptionKey: "solutions.voice.description",
+      icon: Cog,
+      titleKey: "solutions.automation.title",
+      descriptionKey: "solutions.automation.description",
+      imageSrc: flujoN8n,
+      features: [
+        { icon: CheckSquare, textKey: "solutions.features.attention" },
+        { icon: MessageCircle, textKey: "solutions.features.kb" },
+        { icon: Brain, textKey: "solutions.features.ai" },
+        { icon: Grid3x3, textKey: "solutions.features.integration" },
+      ],
     },
     {
       icon: Link2,
       titleKey: "solutions.integrations.title",
       descriptionKey: "solutions.integrations.description",
+      features: [
+        { icon: CheckSquare, textKey: "solutions.features.attention" },
+        { icon: MessageCircle, textKey: "solutions.features.kb" },
+        { icon: Brain, textKey: "solutions.features.ai" },
+        { icon: Grid3x3, textKey: "solutions.features.integration" },
+      ],
     },
   ];
 
@@ -120,6 +224,16 @@ const SolutionsSection = () => {
           <CarouselNext className="hidden sm:flex bg-background/40 border-primary-foreground/20 text-primary-foreground/70 hover:bg-background/70" />
         </Carousel>
       </div>
+      <style>{`
+        @keyframes wave {
+          0% {
+            background-position: -200% 0;
+          }
+          100% {
+            background-position: 200% 0;
+          }
+        }
+      `}</style>
     </section>
   );
 };
