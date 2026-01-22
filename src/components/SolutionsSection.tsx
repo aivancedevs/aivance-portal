@@ -1,10 +1,11 @@
-import { Cog, MessageSquare, Phone, Link2, CheckSquare, MessageCircle, Brain, Grid3x3 } from "lucide-react";
+import { Cog, MessageSquare, Phone, Link2, CheckSquare, MessageCircle, Brain, Grid3x3, Globe } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import AnimatedBackground, { solutionsBackgroundConfig } from "./AnimatedBackground";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import agenteIa from "@/assets/img/agente-ia.png";
 import agenteVoz from "@/assets/img/agente-voz.png";
 import flujoN8n from "@/assets/img/flujo-n8n.png";
+import panelMetricas from "@/assets/img/panel-metricas.png";
 import { useEffect, useRef, useState } from "react";
 
 interface Feature {
@@ -145,8 +146,8 @@ const SolutionsSection = () => {
       features: [
         { icon: CheckSquare, textKey: "solutions.features.attention" },
         { icon: MessageCircle, textKey: "solutions.features.kb" },
-        { icon: Brain, textKey: "solutions.features.ai" },
-        { icon: Grid3x3, textKey: "solutions.features.integration" },
+        { icon: Phone, textKey: "solutions.features.ai" },
+        { icon: Globe, textKey: "solutions.features.integration" },
       ],
     },
     {
@@ -157,8 +158,8 @@ const SolutionsSection = () => {
       features: [
         { icon: CheckSquare, textKey: "solutions.features.attention" },
         { icon: MessageCircle, textKey: "solutions.features.kb" },
-        { icon: Brain, textKey: "solutions.features.ai" },
-        { icon: Grid3x3, textKey: "solutions.features.integration" },
+        { icon: Phone, textKey: "solutions.features.ai" },
+        { icon: Globe, textKey: "solutions.features.integration" },
       ],
     },    
     {
@@ -169,19 +170,20 @@ const SolutionsSection = () => {
       features: [
         { icon: CheckSquare, textKey: "solutions.features.attention" },
         { icon: MessageCircle, textKey: "solutions.features.kb" },
-        { icon: Brain, textKey: "solutions.features.ai" },
-        { icon: Grid3x3, textKey: "solutions.features.integration" },
+        { icon: Phone, textKey: "solutions.features.ai" },
+        { icon: Globe, textKey: "solutions.features.integration" },
       ],
     },
     {
       icon: Link2,
       titleKey: "solutions.integrations.title",
       descriptionKey: "solutions.integrations.description",
+      imageSrc: panelMetricas,
       features: [
         { icon: CheckSquare, textKey: "solutions.features.attention" },
         { icon: MessageCircle, textKey: "solutions.features.kb" },
-        { icon: Brain, textKey: "solutions.features.ai" },
-        { icon: Grid3x3, textKey: "solutions.features.integration" },
+        { icon: Phone, textKey: "solutions.features.ai" },
+        { icon: Globe, textKey: "solutions.features.integration" },
       ],
     },
   ];

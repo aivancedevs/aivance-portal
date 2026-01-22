@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import {
   Select,
   SelectContent,
@@ -14,14 +14,19 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { useEffect } from "react";
 
 const Templates = () => {
   const { t } = useLanguage();
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className="min-h-screen bg-primary">
       <Navbar />
-      <section className="relative min-h-screen overflow-hidden bg-primary text-primary-foreground pt-24 sm:pt-32">
+      <section className="relative min-h-screen overflow-hidden bg-primary text-primary-foreground pt-32 sm:pt-0">
         <AnimatedBackground circles={heroBackgroundConfig} />
         
         <div className="relative z-10 container mx-auto px-4 sm:px-6 py-16 sm:py-24">
@@ -41,15 +46,7 @@ const Templates = () => {
 
             {/* Form Card */}
             <Card className="bg-primary-foreground/5 border-primary-foreground/10 backdrop-blur-md">
-              <CardHeader>
-                <CardTitle className="text-primary-foreground">
-                  {t("templates.title")}
-                </CardTitle>
-                <CardDescription className="text-primary-foreground/70">
-                  {t("templates.description")}
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
+              <CardContent className="pt-6">
                 <form className="space-y-6">
                   <div className="space-y-2">
                     <Label htmlFor="name" className="text-primary-foreground">
