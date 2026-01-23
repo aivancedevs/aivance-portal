@@ -1,36 +1,36 @@
 import { useState, type MouseEvent } from "react";
-import { AlertCircle, RefreshCcw, TrendingDown, Unplug } from "lucide-react";
+import { Rocket, Settings, Compass, Users } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import AnimatedBackground, { problemsBackgroundConfig } from "./AnimatedBackground";
 
 const problems = [
   {
-    icon: RefreshCcw,
+    icon: Rocket,
     titleKey: "problems.manual.title",
     descriptionKey: "problems.manual.description",
     badgeKey: "problems.subtitle",
-    tagsKeys: ["Operations", "Productivity", "Time"],
+    tagsKeys: ["End-to-end", "Custom", "Production", "Integration"],
   },
   {
-    icon: AlertCircle,
+    icon: Settings,
     titleKey: "problems.friction.title",
     descriptionKey: "problems.friction.description",
     badgeKey: "problems.subtitle",
-    tagsKeys: ["Communication", "Workflows", "Data"],
+    tagsKeys: ["Monitoring", "Optimization", "Updates", "Support"],
   },
   {
-    icon: TrendingDown,
+    icon: Compass,
     titleKey: "problems.scaling.title",
     descriptionKey: "problems.scaling.description",
     badgeKey: "problems.subtitle",
-    tagsKeys: ["Growth", "Efficiency", "Costs"],
+    tagsKeys: ["Strategy", "Advisory", "ROI", "Mentorship"],
   },
   {
-    icon: Unplug,
+    icon: Users,
     titleKey: "problems.integrations.title",
     descriptionKey: "problems.integrations.description",
     badgeKey: "problems.subtitle",
-    tagsKeys: ["Systems", "APIs", "Data Silos"],
+    tagsKeys: ["ML Engineers", "AI Architects", "Data Scientists", "Flexible"],
   },
 ];
 

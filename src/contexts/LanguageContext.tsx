@@ -14,7 +14,7 @@ const LanguageContext = createContext<LanguageContextType | undefined>(undefined
 const translations: Record<Language, Record<string, string>> = {
   es: {
     // Navbar
-    "nav.problems": "Problemas",
+    "nav.problems": "Servicios",
     "nav.solutions": "Soluciones",
     "nav.process": "Cómo Trabajamos",
     "nav.schedule": "Agendar Reunión",
@@ -27,18 +27,18 @@ const translations: Record<Language, Record<string, string>> = {
     "hero.badge.metrics": "Panel de métricas",
     "hero.badge.automations": "Automatizaciones complejas",
     
-    // ProblemsSection
-    "problems.subtitle": "El Desafío",
-    "problems.title": "Las operaciones no deberían frenarte",
-    "problems.description": "La mayoría de las empresas se ven limitadas por los mismos desafíos operativos. ¿Te suena familiar?",
-    "problems.manual.title": "Procesos\nManuales",
-    "problems.manual.description": "Los equipos pasan horas en tareas repetitivas que podrían automatizarse, drenando productividad y moral.",
-    "problems.friction.title": "Fricción\nOperativa",
-    "problems.friction.description": "La información se pierde entre sistemas y equipos, causando retrasos y errores en flujos de trabajo críticos.",
-    "problems.scaling.title": "Limitaciones\nde Escalabilidad",
-    "problems.scaling.description": "El crecimiento está limitado por procesos que no escalan, forzándote a contratar en lugar de optimizar.",
-    "problems.integrations.title": "Integraciones\nDeficientes",
-    "problems.integrations.description": "Herramientas desconectadas crean silos de datos y fuerzan entrada manual de datos en múltiples plataformas.",
+    // ServicesSection (antes ProblemsSection)
+    "problems.subtitle": "Nuestros Servicios",
+    "problems.title": "Cómo podemos ayudarte",
+    "problems.description": "Modelos de trabajo flexibles adaptados a tus necesidades y objetivos de negocio.",
+    "problems.manual.title": "LaunchAI",
+    "problems.manual.description": "Lo lanzamos por ti: diseño, desarrollo y despliegue completo de tu solución de IA. Desde la idea hasta producción, nosotros nos encargamos de todo el ciclo de vida del proyecto.",
+    "problems.friction.title": "KeepAI",
+    "problems.friction.description": "Lo mantenemos funcionando: operación y optimización 24/7 de tu infraestructura de IA. Monitoreo continuo, actualizaciones y soporte para que tu solución siempre esté al máximo rendimiento.",
+    "problems.scaling.title": "GuideAI",
+    "problems.scaling.description": "Te guiamos en el camino: estrategia, auditoría de procesos y mentoría personalizada. Identificamos oportunidades, optimizamos lo existente y te ayudamos a maximizar el ROI de tu inversión en IA.",
+    "problems.integrations.title": "ScaleAI",
+    "problems.integrations.description": "Escalamos tu equipo: expertos en IA que se integran a tu operación. ML Engineers, AI Architects y Data Scientists listos para impulsar tus proyectos sin las complicaciones de contratar full-time.",
     
     // SolutionsSection
     "solutions.subtitle": "Lo Que Construimos",
@@ -83,7 +83,7 @@ const translations: Record<Language, Record<string, string>> = {
   },
   en: {
     // Navbar
-    "nav.problems": "Problems",
+    "nav.problems": "Services",
     "nav.solutions": "Solutions",
     "nav.process": "How We Work",
     "nav.schedule": "Schedule a Meeting",
@@ -96,18 +96,18 @@ const translations: Record<Language, Record<string, string>> = {
     "hero.badge.metrics": "Metrics panel",
     "hero.badge.automations": "Complex automations",
     
-    // ProblemsSection
-    "problems.subtitle": "The Challenge",
-    "problems.title": "Operations shouldn't slow you down",
-    "problems.description": "Most companies are held back by the same operational challenges. Sound familiar?",
-    "problems.manual.title": "Manual\nProcesses",
-    "problems.manual.description": "Teams spend hours on repetitive tasks that could be automated, draining productivity and morale.",
-    "problems.friction.title": "Operational\nFriction",
-    "problems.friction.description": "Information gets lost between systems and teams, causing delays and errors in critical workflows.",
-    "problems.scaling.title": "Scaling\nLimitations",
-    "problems.scaling.description": "Growth is bottlenecked by processes that don't scale, forcing you to hire instead of optimize.",
-    "problems.integrations.title": "Poor\nIntegrations",
-    "problems.integrations.description": "Disconnected tools create data silos and force manual data entry across multiple platforms.",
+    // ServicesSection (antes ProblemsSection)
+    "problems.subtitle": "Our Services",
+    "problems.title": "How we can help you",
+    "problems.description": "Flexible work models tailored to your business needs and goals.",
+    "problems.manual.title": "LaunchAI",
+    "problems.manual.description": "We launch it for you: complete design, development and deployment of your AI solution. From idea to production, we handle the entire project lifecycle.",
+    "problems.friction.title": "KeepAI",
+    "problems.friction.description": "We keep it running: 24/7 operation and optimization of your AI infrastructure. Continuous monitoring, updates and support to keep your solution at peak performance.",
+    "problems.scaling.title": "GuideAI",
+    "problems.scaling.description": "We guide you: strategy, process auditing and personalized mentorship. We identify opportunities, optimize existing systems and help you maximize ROI on your AI investment.",
+    "problems.integrations.title": "ScaleAI",
+    "problems.integrations.description": "We scale your team: AI experts who integrate into your operation. ML Engineers, AI Architects and Data Scientists ready to drive your projects without the complexities of full-time hiring.",
     
     // SolutionsSection
     "solutions.subtitle": "What We Build",
