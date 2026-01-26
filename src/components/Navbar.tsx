@@ -238,7 +238,7 @@ const Navbar = () => {
           className="w-16 h-16 rounded-full gradient-accent text-accent-foreground hover:opacity-90 shadow-lg hover:shadow-xl transition-all"
           asChild
         >
-          <a href="https://wa.me/1234567890" target="_blank" rel="noopener noreferrer" aria-label="Contact Us">
+          <a href="https://wa.me/5491168345115" target="_blank" rel="noopener noreferrer" aria-label="Contact Us">
             <svg
               className="w-7 h-7"
               viewBox="0 0 24 24"

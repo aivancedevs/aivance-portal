@@ -1,30 +1,38 @@
 import { useState, type MouseEvent } from "react";
-import { AlertCircle, RefreshCcw, TrendingDown, Unplug } from "lucide-react";
+import { Rocket, Settings, Compass, Users } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import AnimatedBackground, { problemsBackgroundConfig } from "./AnimatedBackground";
 
 const problems = [
-    {
-      icon: RefreshCcw,
-      titleKey: "problems.manual.title",
-      descriptionKey: "problems.manual.description",
-    },
-    {
-      icon: AlertCircle,
-      titleKey: "problems.friction.title",
-      descriptionKey: "problems.friction.description",
-    },
-    {
-      icon: TrendingDown,
-      titleKey: "problems.scaling.title",
-      descriptionKey: "problems.scaling.description",
-    },
-    {
-      icon: Unplug,
-      titleKey: "problems.integrations.title",
-      descriptionKey: "problems.integrations.description",
-    },
-  ];
+  {
+    icon: Rocket,
+    titleKey: "problems.manual.title",
+    descriptionKey: "problems.manual.description",
+    badgeKey: "problems.subtitle",
+    tagsKeys: ["End-to-end", "Custom", "Production", "Integration"],
+  },
+  {
+    icon: Settings,
+    titleKey: "problems.friction.title",
+    descriptionKey: "problems.friction.description",
+    badgeKey: "problems.subtitle",
+    tagsKeys: ["Monitoring", "Optimization", "Updates", "Support"],
+  },
+  {
+    icon: Compass,
+    titleKey: "problems.scaling.title",
+    descriptionKey: "problems.scaling.description",
+    badgeKey: "problems.subtitle",
+    tagsKeys: ["Strategy", "Advisory", "ROI", "Mentorship"],
+  },
+  {
+    icon: Users,
+    titleKey: "problems.integrations.title",
+    descriptionKey: "problems.integrations.description",
+    badgeKey: "problems.subtitle",
+    tagsKeys: ["ML Engineers", "AI Architects", "Data Scientists", "Flexible"],
+  },
+];
 
 interface ProblemCardProps {
   problem: (typeof problems)[number];
@@ -33,8 +41,8 @@ interface ProblemCardProps {
 
 const ProblemCard = ({ problem, index }: ProblemCardProps) => {
   const { t } = useLanguage();
-  const [transform, setTransform] = useState<string>("rotateX(0deg) rotateY(0deg)");
-  const [isHover, setIsHover] = useState<boolean>(false);
+  const [transform, setTransform] = useState("rotateX(0deg) rotateY(0deg)");
+  const [isHover, setIsHover] = useState(false);
 
   const handleMouseMove = (event: MouseEvent<HTMLDivElement>) => {
     const rect = event.currentTarget.getBoundingClientRect();
@@ -43,7 +51,6 @@ const ProblemCard = ({ problem, index }: ProblemCardProps) => {
     const midX = rect.width / 2;
     const midY = rect.height / 2;
 
-    // Efecto 3D un poco más notorio
     const rotateX = ((y - midY) / midY) * 14;
     const rotateY = ((x - midX) / midX) * -14;
 
@@ -58,39 +65,72 @@ const ProblemCard = ({ problem, index }: ProblemCardProps) => {
     setIsHover(false);
   };
 
+  // Obtener el título traducido y dividirlo en partes
+  const title = t(problem.titleKey) || problem.titleKey;
+  const titleParts = title.split('\n');
+
   return (
     <div
-      className="p-[1px] rounded-2xl bg-gradient-to-br from-primary-foreground/5 via-primary-foreground/10 to-transparent"
-      style={{ animationDelay: `${index * 0.1}s` }}
+      className="perspective-1000"
+      style={{ perspective: "1000px" }}
     >
       <div
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
-        className="h-full rounded-2xl bg-primary-foreground/5 border border-primary-foreground/10 px-5 py-5 sm:px-6 sm:py-6 shadow-card/0 hover:shadow-card hover:border-primary-foreground/30 hover:bg-primary-foreground/10 hover:shadow-[0_0_40px_rgba(148,246,222,0.28)] transition-all duration-300"
+        className={`
+          flex flex-col gap-5 justify-start items-start w-full 
+          bg-primary-foreground/5 rounded-xl p-6 
+          border border-primary-foreground/10
+          shadow-[0px_4px_12px_rgba(148,246,222,0.15)]
+          transition-all duration-300 ease-out
+          ${isHover ? "shadow-[0px_8px_24px_rgba(148,246,222,0.25)] bg-primary-foreground/10" : ""}
+        `}
         style={{
-          transform: `${transform} ${isHover ? "scale(1.05)" : "scale(1)"}`,
+          transform,
           transformStyle: "preserve-3d",
-          willChange: "transform",
+          transitionDelay: `${index * 100}ms`,
         }}
       >
-        <div
-          className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-accent flex items-center justify-center mb-3 sm:mb-4"
-          style={{ transform: "translateZ(20px)" }}
-        >
-          <problem.icon className="w-4 h-4 sm:w-5 sm:h-5 text-accent-foreground" />
+        {/* Icon and Badge */}
+        <div className="flex flex-row justify-between items-center w-full">
+          <div className="w-10 h-10 rounded-lg bg-accent/20 flex items-center justify-center">
+            <problem.icon className="w-5 h-5 text-accent" />
+          </div>
+          <span className="text-xs font-semibold text-accent-foreground bg-accent rounded-full px-3 py-1">
+            {t(problem.badgeKey)}
+          </span>
         </div>
-        <h3
-          className="text-base sm:text-lg font-semibold text-primary-foreground mb-2"
-          style={{ transform: "translateZ(15px)" }}
-        >
-          {t(problem.titleKey)}
-        </h3>
-        <p
-          className="text-primary-foreground/70 text-xs sm:text-sm leading-relaxed"
-          style={{ transform: "translateZ(10px)" }}
-        >
-          {t(problem.descriptionKey)}
-        </p>
+
+        {/* Title and Description */}
+        <div className="flex flex-col gap-3 justify-start w-full">
+          <h3 className="text-xl font-bold leading-tight text-primary-foreground whitespace-pre-line">
+            <span className="text-accent">{titleParts[0]}</span>
+            {titleParts[1] && (
+              <>
+                {'\n'}
+                {titleParts[1]}
+              </>
+            )}
+          </h3>
+          <span className="w-full h-[1px] bg-accent/50" />
+          <div className="w-full min-h-[80px]">
+            <p className="text-sm font-normal leading-relaxed text-primary-foreground/70">
+              {t(problem.descriptionKey)}
+            </p>
+          </div>
+        </div>
+
+        {/* Tags */}
+        <div className="flex flex-row flex-wrap gap-2 justify-start items-center w-full mt-auto">
+          {problem.tagsKeys.map((tag) => (
+            <span
+              key={tag}
+              className="text-xs font-medium text-primary-foreground bg-primary-foreground/10 rounded-md px-2 py-1"
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
       </div>
     </div>
   );
@@ -100,22 +140,29 @@ const ProblemsSection = () => {
   const { t } = useLanguage();
 
   return (
-    <section id="problems" className="relative py-16 sm:py-24 md:py-32 bg-primary text-primary-foreground overflow-hidden">
+    <section id="problems" className="py-24 md:py-32 bg-primary relative overflow-hidden">
+      {/* Animated Background */}
       <AnimatedBackground circles={problemsBackgroundConfig} />
-      <div className="relative z-10 container mx-auto px-4 sm:px-6">
-        <div className="max-w-3xl mx-auto text-center mb-12 sm:mb-16">
-          <p className="text-xs sm:text-sm font-medium text-accent mb-3 sm:mb-4">{t("problems.subtitle")}</p>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold text-primary-foreground mb-4 sm:mb-6 text-balance">
+      
+      <div className="container mx-auto px-6 max-w-[1400px] relative z-10">
+        {/* Header */}
+        <div className="flex flex-col gap-4 justify-start items-center w-full mb-12 lg:mb-16">
+          <p className="text-sm font-medium text-accent">
+            {t("problems.subtitle")}
+          </p>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold leading-tight text-center text-primary-foreground w-full lg:w-[90%] text-balance">
             {t("problems.title")}
           </h2>
-          <p className="text-base sm:text-lg text-primary-foreground/70 text-balance">
+          <p className="text-lg text-primary-foreground/70 text-center max-w-2xl text-balance">
             {t("problems.description")}
           </p>
+          <div className="w-24 h-[2px] bg-accent mt-2" />
         </div>
 
-        <div className="grid sm:grid-cols-2 gap-5 sm:gap-6 max-w-5xl mx-auto [perspective:1400px]">
+        {/* Cards Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6 w-full">
           {problems.map((problem, index) => (
-            <ProblemCard key={problem.titleKey} problem={problem} index={index} />
+            <ProblemCard key={`${problem.titleKey}-${index}`} problem={problem} index={index} />
           ))}
         </div>
       </div>
