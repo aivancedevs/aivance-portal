@@ -89,7 +89,7 @@ const translations: Record<Language, Record<string, string>> = {
     // TemplatesPage
     "templates.title": "Plantillas",
     "templates.subtitle": "Consulta por nuestras plantillas",
-    "templates.description": "Completa el formulario para consultar sobre nuestras plantillas disponibles.",
+    "templates.description": "Completa el formulario para obtener nuestras plantillas disponibles.",
     "templates.form.name": "Nombre",
     "templates.form.email": "Email",
     "templates.form.template": "Plantilla",
