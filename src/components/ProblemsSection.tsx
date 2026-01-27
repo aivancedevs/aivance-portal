@@ -140,7 +140,7 @@ const ProblemsSection = () => {
   const { t } = useLanguage();
 
   return (
-    <section id="problems" className="py-24 md:py-32 bg-primary relative overflow-hidden">
+    <section id="services" className="py-24 md:py-32 bg-primary relative overflow-hidden">
       {/* Animated Background */}
       <AnimatedBackground circles={problemsBackgroundConfig} />
       
