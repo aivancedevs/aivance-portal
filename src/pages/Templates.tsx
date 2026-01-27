@@ -14,14 +14,78 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const Templates = () => {
   const { t } = useLanguage();
+  const [nombre, setNombre] = useState("");
+  const [email, setEmail] = useState("");
+  const [plantillaId, setPlantillaId] = useState("");
+  const [comentario, setComentario] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [successMessage, setSuccessMessage] = useState<string | null>(null);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  const API_BASE_URL =
+    import.meta.env.VITE_TEMPLATE_SERVICE_URL || "http://localhost:3000";
+
+  const handleSubmit = async (event: React.FormEvent) => {
+    event.preventDefault();
+    setSuccessMessage(null);
+    setErrorMessage(null);
+    setIsSubmitted(false);
+
+    if (!plantillaId) {
+      setErrorMessage(t("templates.form.error.template_required"));
+      return;
+    }
+
+    setIsSubmitting(true);
+    try {
+      const response = await fetch(`${API_BASE_URL}/api/solicitudes`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          nombre,
+          email,
+          plantillaId,
+          comentario,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        const validationMessage =
+          data?.errors?.[0]?.msg ||
+          data?.message ||
+          t("templates.form.error.validation");
+        setErrorMessage(validationMessage);
+        return;
+      }
+
+      setSuccessMessage(t("templates.form.success"));
+      setNombre("");
+      setEmail("");
+      setPlantillaId("");
+      setComentario("");
+      setIsSubmitted(true);
+    } catch (error) {
+      console.error(error);
+      setErrorMessage(
+        t("templates.form.error.generic")
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-primary">
@@ -47,7 +111,7 @@ const Templates = () => {
             {/* Form Card */}
             <Card className="bg-primary-foreground/5 border-primary-foreground/10 backdrop-blur-md">
               <CardContent className="pt-6">
-                <form className="space-y-6">
+                <form className="space-y-6" onSubmit={handleSubmit}>
                   <div className="space-y-2">
                     <Label htmlFor="name" className="text-primary-foreground">
                       {t("templates.form.name")}
@@ -57,6 +121,8 @@ const Templates = () => {
                       type="text"
                       placeholder={t("templates.form.name.placeholder")}
                       className="bg-primary-foreground/20 border-primary-foreground/30 text-primary-foreground placeholder:text-primary-foreground/50 backdrop-blur-sm"
+                      value={nombre}
+                      onChange={(e) => setNombre(e.target.value)}
                     />
                   </div>
                   
@@ -69,6 +135,8 @@ const Templates = () => {
                       type="email"
                       placeholder={t("templates.form.email.placeholder")}
                       className="bg-primary-foreground/20 border-primary-foreground/30 text-primary-foreground placeholder:text-primary-foreground/50 backdrop-blur-sm"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
                     />
                   </div>
 
@@ -76,7 +144,10 @@ const Templates = () => {
                     <Label htmlFor="template" className="text-primary-foreground">
                       {t("templates.form.template")}
                     </Label>
-                    <Select>
+                    <Select
+                      value={plantillaId}
+                      onValueChange={(value) => setPlantillaId(value)}
+                    >
                       <SelectTrigger className="bg-primary-foreground/20 border-primary-foreground/30 text-primary-foreground backdrop-blur-sm">
                         <SelectValue placeholder={t("templates.form.template.placeholder")} />
                       </SelectTrigger>
@@ -102,15 +173,33 @@ const Templates = () => {
                       id="comment"
                       placeholder={t("templates.form.comment.placeholder")}
                       className="bg-primary-foreground/20 border-primary-foreground/30 text-primary-foreground placeholder:text-primary-foreground/50 min-h-[100px] backdrop-blur-sm"
+                      value={comentario}
+                      onChange={(e) => setComentario(e.target.value)}
                     />
                   </div>
 
                   <Button 
                     type="submit" 
                     className="w-full gradient-accent text-accent-foreground hover:opacity-90"
+                    disabled={isSubmitting || isSubmitted}
                   >
-                    {t("templates.form.submit")}
+                    {isSubmitting
+                      ? t("templates.form.sending")
+                      : isSubmitted
+                        ? t("templates.form.sent")
+                        : t("templates.form.submit")}
                   </Button>
+
+                  {successMessage && (
+                    <p className="text-sm text-emerald-400 text-center">
+                      {successMessage}
+                    </p>
+                  )}
+                  {errorMessage && (
+                    <p className="text-sm text-red-400 text-center">
+                      {errorMessage}
+                    </p>
+                  )}
                 </form>
               </CardContent>
             </Card>
