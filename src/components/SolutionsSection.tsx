@@ -206,24 +206,24 @@ const SolutionsSection = () => {
           opts={{
             align: "start",
             loop: true,
+            dragFree: false,
           }}
-          className="max-w-6xl mx-auto"
+          className="max-w-6xl mx-auto w-full"
         >
-          <CarouselContent>
-            {[0, 1].map((pageIndex) => (
-              <CarouselItem key={pageIndex} className="sm:basis-full">
-                <div className="grid md:grid-cols-2 gap-6 lg:gap-8 items-stretch">
-                  {solutions
-                    .slice(pageIndex * 2, pageIndex * 2 + 2)
-                    .map((solution, index) => (
-                      <SolutionCard key={solution.titleKey + index} solution={solution} />
-                    ))}
+          <CarouselContent className="-ml-2 md:-ml-4">
+            {solutions.map((solution, index) => (
+              <CarouselItem
+                key={solution.titleKey + index}
+                className="pl-2 md:pl-4 basis-full md:basis-1/2"
+              >
+                <div className="h-full">
+                  <SolutionCard solution={solution} />
                 </div>
               </CarouselItem>
             ))}
           </CarouselContent>
-          <CarouselPrevious className="hidden sm:flex bg-background/40 border-primary-foreground/20 text-primary-foreground/70 hover:bg-background/70" />
-          <CarouselNext className="hidden sm:flex bg-background/40 border-primary-foreground/20 text-primary-foreground/70 hover:bg-background/70" />
+          <CarouselPrevious className="hidden md:flex bg-background/40 border-primary-foreground/20 text-primary-foreground/70 hover:bg-background/70" />
+          <CarouselNext className="hidden md:flex bg-background/40 border-primary-foreground/20 text-primary-foreground/70 hover:bg-background/70" />
         </Carousel>
       </div>
       <style>{`
