@@ -40,7 +40,7 @@ const Navbar = () => {
   };
 
   const navLinks = [
-    { id: "problems", key: "nav.problems", isRoute: false },
+    { id: "services", key: "nav.problems", isRoute: false },
     { id: "solutions", key: "nav.solutions", isRoute: false },
     { id: "process", key: "nav.process", isRoute: false },
     { id: "plantillas", key: "nav.templates", isRoute: true, path: "/plantillas" },
