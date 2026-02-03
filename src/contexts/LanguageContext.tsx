@@ -14,15 +14,27 @@ const LanguageContext = createContext<LanguageContextType | undefined>(undefined
 const translations: Record<Language, Record<string, string>> = {
   es: {
     // Navbar
-    "nav.problems": "Problemas",
+    "nav.problems": "Servicios",
     "nav.solutions": "Soluciones",
     "nav.process": "Cómo Trabajamos",
     "nav.templates": "Plantillas",
     "nav.schedule": "Agendar Reunión",
-    
+    /*
     // HeroSection
     "hero.title.part1": "Automatiza procesos",
     "hero.title.part2": "Escala operaciones",
+    "hero.badge.messaging": "Agentes de mensajería",
+    "hero.badge.voice": "Agentes de voz",
+    "hero.badge.metrics": "Panel de métricas",
+    "hero.badge.automations": "Automatizaciones complejas",
+    */
+
+    // HeroSection
+    "hero.title.part1": "Automatiza procesos",
+    "hero.title.part2": "Escala operaciones",
+    "hero.ai": "AI",
+    "hero.main.title": "que automatiza",
+    "hero.main.subtitle": "las operaciones de tu negocio",
     "hero.badge.messaging": "Agentes de mensajería",
     "hero.badge.voice": "Agentes de voz",
     "hero.badge.metrics": "Panel de métricas",
@@ -108,15 +120,26 @@ const translations: Record<Language, Record<string, string>> = {
   },
   en: {
     // Navbar
-    "nav.problems": "Problems",
+    "nav.problems": "Services",
     "nav.solutions": "Solutions",
     "nav.process": "How We Work",
     "nav.templates": "Templates",
     "nav.schedule": "Schedule a Meeting",
     
     // HeroSection
+    /*
     "hero.title.part1": "Automate processes",
     "hero.title.part2": "Scale operations",
+    "hero.badge.messaging": "Messaging agents",
+    "hero.badge.voice": "Voice agents",
+    "hero.badge.metrics": "Metrics panel",
+    "hero.badge.automations": "Complex automations",
+*/
+    "hero.title.part1": "Automate processes",
+    "hero.title.part2": "Scale operations",
+    "hero.ai": "AI",
+    "hero.main.title": "that automates",
+    "hero.main.subtitle": "your business operations",
     "hero.badge.messaging": "Messaging agents",
     "hero.badge.voice": "Voice agents",
     "hero.badge.metrics": "Metrics panel",

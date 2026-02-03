@@ -23,16 +23,13 @@ const Navbar = () => {
   const navigate = useNavigate();
 
   const scrollToSection = (id: string) => {
-    // Si estamos en otra página que no sea la principal, redirigir a la principal con el hash
     if (location.pathname !== "/") {
       navigate(`/#${id}`);
-      // Esperar a que la página cargue y luego hacer scroll
       setTimeout(() => {
         const element = document.getElementById(id);
         element?.scrollIntoView({ behavior: "smooth" });
       }, 100);
     } else {
-      // Si estamos en la página principal, hacer scroll directamente
       const element = document.getElementById(id);
       element?.scrollIntoView({ behavior: "smooth" });
     }
@@ -68,17 +65,24 @@ const Navbar = () => {
       </>
       
       <div className="container mx-auto px-4 sm:px-6 py-2 transition-all duration-300 relative z-10">
-        <div className="flex items-center justify-between">
-          <Link to="/">
+        {/* 
+          FIX: Se eliminó el flex justify-between que causaba el reflow.
+          Ahora las 3 secciones son capas absolutas independientes dentro
+          de un container con altura fija → ninguna afecta a las otras.
+        */}
+        <div className="relative h-10">
+
+          {/* CAPA 1: Logo — anchored left */}
+          <Link to="/" className="absolute left-0 top-1/2 -translate-y-1/2">
             <img
               src={logo}
               alt="AIVANCE Logo"
               className="h-7 sm:h-8 w-auto transition-all duration-300 filter brightness-0 invert drop-shadow-[0_0_10px_rgba(0,0,0,0.7)] cursor-pointer"
             />
           </Link>
-          
-          {/* Desktop Navigation - Absolutely centered */}
-          <div className="hidden md:flex items-center gap-8 absolute left-1/2 -translate-x-1/2">
+
+          {/* CAPA 2: Nav links — anchored center */}
+          <div className="hidden md:flex items-center gap-8 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
             {navLinks.map((link) => 
               link.isRoute ? (
                 <Link
@@ -100,7 +104,8 @@ const Navbar = () => {
             )}
           </div>
 
-          <div className="flex items-center gap-3">
+          {/* CAPA 3: Botones derecha — anchored right */}
+          <div className="flex items-center gap-3 absolute right-0 top-1/2 -translate-y-1/2">
             {/* Schedule a Meeting Button - Desktop */}
             <a
               href="https://calendly.com/aivancedevs/30min"
@@ -115,7 +120,7 @@ const Navbar = () => {
             {/* Language Selector - Desktop */}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <button className="hidden sm:flex items-center gap-1 text-base font-semibold px-3 py-1.5 rounded-lg border transition-all duration-300 text-primary-foreground border-accent/70 bg-accent/20 hover:bg-accent hover:text-accent-foreground shadow-lg shadow-black/20">
+                <button className="hidden sm:flex items-center justify-center gap-1 w-[68px] text-base font-semibold px-3 py-1.5 rounded-lg border transition-all duration-300 text-primary-foreground border-accent/70 bg-accent/20 hover:bg-accent hover:text-accent-foreground shadow-lg shadow-black/20">
                   {language.toUpperCase()}
                   <ChevronDown className="w-3 h-3" />
                 </button>
