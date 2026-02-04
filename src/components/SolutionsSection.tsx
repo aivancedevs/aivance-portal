@@ -1,4 +1,4 @@
-import { Cog, MessageSquare, Phone, Link2, CheckSquare, MessageCircle, Brain, Grid3x3, Globe } from "lucide-react";
+import { Cog, MessageSquare, BarChart, Zap, Users, Target, Link2, Play, Bell, RefreshCw, Database, FileText, LayoutDashboard, TrendingUp } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import AnimatedBackground, { solutionsBackgroundConfig } from "./AnimatedBackground";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
@@ -139,51 +139,39 @@ const SolutionsSection = () => {
 
   const solutions = [
     {
-      icon: Phone,
-      titleKey: "solutions.voice.title",
-      descriptionKey: "solutions.voice.description",
-      imageSrc: agenteVoz,
-      features: [
-        { icon: CheckSquare, textKey: "solutions.features.attention" },
-        { icon: MessageCircle, textKey: "solutions.features.kb" },
-        { icon: Phone, textKey: "solutions.features.ai" },
-        { icon: Globe, textKey: "solutions.features.integration" },
-      ],
-    },
-    {
       icon: MessageSquare,
       titleKey: "solutions.messaging.title",
       descriptionKey: "solutions.messaging.description",
       imageSrc: agenteIa,
       features: [
-        { icon: CheckSquare, textKey: "solutions.features.attention" },
-        { icon: MessageCircle, textKey: "solutions.features.kb" },
-        { icon: Phone, textKey: "solutions.features.ai" },
-        { icon: Globe, textKey: "solutions.features.integration" },
+        { icon: MessageSquare, textKey: "solutions.messaging.feature1" },
+        { icon: Users, textKey: "solutions.messaging.feature2" },
+        { icon: Target, textKey: "solutions.messaging.feature3" },
+        { icon: Link2, textKey: "solutions.messaging.feature4" },
       ],
-    },    
+    },
     {
       icon: Cog,
       titleKey: "solutions.automation.title",
       descriptionKey: "solutions.automation.description",
       imageSrc: flujoN8n,
       features: [
-        { icon: CheckSquare, textKey: "solutions.features.attention" },
-        { icon: MessageCircle, textKey: "solutions.features.kb" },
-        { icon: Phone, textKey: "solutions.features.ai" },
-        { icon: Globe, textKey: "solutions.features.integration" },
+        { icon: Zap, textKey: "solutions.automation.feature1" },
+        { icon: Play, textKey: "solutions.automation.feature2" },
+        { icon: Bell, textKey: "solutions.automation.feature3" },
+        { icon: RefreshCw, textKey: "solutions.automation.feature4" },
       ],
     },
     {
-      icon: Link2,
-      titleKey: "solutions.integrations.title",
-      descriptionKey: "solutions.integrations.description",
+      icon: BarChart,
+      titleKey: "solutions.metrics.title",
+      descriptionKey: "solutions.metrics.description",
       imageSrc: panelMetricas,
       features: [
-        { icon: CheckSquare, textKey: "solutions.features.attention" },
-        { icon: MessageCircle, textKey: "solutions.features.kb" },
-        { icon: Phone, textKey: "solutions.features.ai" },
-        { icon: Globe, textKey: "solutions.features.integration" },
+        { icon: TrendingUp, textKey: "solutions.metrics.feature1" },
+        { icon: Database, textKey: "solutions.metrics.feature2" },
+        { icon: FileText, textKey: "solutions.metrics.feature3" },
+        { icon: LayoutDashboard, textKey: "solutions.metrics.feature4" },
       ],
     },
   ];
