@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, ReactNode } from "react";
+import { createContext, useContext, useState, useEffect, ReactNode } from "react";
 
 type Language = "es" | "en";
 
@@ -227,6 +227,13 @@ const translations: Record<Language, Record<string, string>> = {
 
 export const LanguageProvider = ({ children }: { children: ReactNode }) => {
   const [language, setLanguage] = useState<Language>("es");
+
+  // Restaurar scroll del body cuando cambia el idioma (Radix puede dejar overflow:hidden al cerrar el dropdown)
+  useEffect(() => {
+    document.body.style.overflow = "";
+    document.body.style.paddingRight = "";
+    document.body.removeAttribute("data-scroll-locked");
+  }, [language]);
 
   const t = (key: string): string => {
     const translation = translations[language][key];

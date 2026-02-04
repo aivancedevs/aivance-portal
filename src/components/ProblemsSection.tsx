@@ -2,6 +2,7 @@ import { useState, type MouseEvent } from "react";
 import { Rocket, Settings, Compass, Users } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import AnimatedBackground, { problemsBackgroundConfig } from "./AnimatedBackground";
+import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
 
 const problems = [
   {
@@ -159,8 +160,24 @@ const ProblemsSection = () => {
           <div className="w-24 h-[2px] bg-accent mt-2" />
         </div>
 
-        {/* Cards Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6 w-full">
+        {/* Mobile: carrusel una card por slide */}
+        <div className="md:hidden w-full">
+          <Carousel
+            opts={{ align: "start", loop: true }}
+            className="w-full"
+          >
+            <CarouselContent className="-ml-2">
+              {problems.map((problem, index) => (
+                <CarouselItem key={`${problem.titleKey}-${index}`} className="pl-2 basis-full">
+                  <ProblemCard problem={problem} index={index} />
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+          </Carousel>
+        </div>
+
+        {/* Desktop: grid */}
+        <div className="hidden md:grid grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6 w-full">
           {problems.map((problem, index) => (
             <ProblemCard key={`${problem.titleKey}-${index}`} problem={problem} index={index} />
           ))}
