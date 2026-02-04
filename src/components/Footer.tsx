@@ -1,6 +1,9 @@
 import { Instagram } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Footer = () => {
+  const { t } = useLanguage();
+
   return (
     <footer className="py-6 sm:py-8 border-t border-primary-foreground/10 bg-primary text-primary-foreground">
       <div className="container mx-auto px-4 sm:px-6">
@@ -36,7 +39,7 @@ const Footer = () => {
 
           {/* Copyright */}
           <p className="text-xs sm:text-sm text-primary-foreground/70 text-center">
-            © {new Date().getFullYear()} AIVANCE. All rights reserved.
+            {t("footer.copyright")}
           </p>
         </div>
       </div>
