@@ -57,6 +57,8 @@ const translations: Record<Language, Record<string, string>> = {
     "solutions.subtitle": "Lo Que Construimos",
     "solutions.title": "Automatización que funciona para ti",
     "solutions.description": "Diseñamos e implementamos soluciones adaptadas a tus desafíos operativos específicos.",
+    "solutions.voice.title": "Agentes de Voz",
+    "solutions.voice.description": "Asistentes virtuales con IA que realizan y reciben llamadas, resuelven consultas frecuentes y gestionan la atención al cliente de forma inteligente y natural.",
     "solutions.messaging.title": "Agentes de Mensajería",
     "solutions.messaging.description": "Chatbots inteligentes para WhatsApp, web y herramientas internas que manejan conversaciones a escala.",
     "solutions.messaging.feature1": "Respuestas instantáneas en WhatsApp y chat web",
@@ -75,6 +77,10 @@ const translations: Record<Language, Record<string, string>> = {
     "solutions.metrics.feature2": "Consolidación de datos de múltiples fuentes",
     "solutions.metrics.feature3": "Reportes automatizados y personalizables",
     "solutions.metrics.feature4": "Dashboards interactivos y actualizados constantemente",
+    "solutions.features.attention": "Atención inteligente 24/7",
+    "solutions.features.kb": "Resolución automática de consultas frecuentes",
+    "solutions.features.ai": "Llamadas entrantes y salientes automatizadas",
+    "solutions.features.integration": "Integración con tus sistemas y CRM",
     
     // ProcessSection
     "process.subtitle": "Nuestro Proceso",
@@ -168,6 +174,8 @@ const translations: Record<Language, Record<string, string>> = {
     "solutions.subtitle": "What We Build",
     "solutions.title": "Automation that works for you",
     "solutions.description": "We design and implement solutions tailored to your specific operational challenges.",
+    "solutions.voice.title": "Voice Agents",
+    "solutions.voice.description": "AI-powered virtual assistants that make and receive calls, resolve frequent queries, and intelligently manage customer service in a natural way.",
     "solutions.messaging.title": "Messaging Agents",
     "solutions.messaging.description": "Intelligent chatbots for WhatsApp, web, and internal tools that handle conversations at scale.",
     "solutions.messaging.feature1": "Instant responses on WhatsApp and web chat",
@@ -186,6 +194,10 @@ const translations: Record<Language, Record<string, string>> = {
     "solutions.metrics.feature2": "Data consolidation from multiple sources",
     "solutions.metrics.feature3": "Automated and customizable reports",
     "solutions.metrics.feature4": "Interactive dashboards updated constantly",
+    "solutions.features.attention": "Intelligent 24/7 support",
+    "solutions.features.kb": "Automatic resolution of frequent queries",
+    "solutions.features.ai": "Automated inbound and outbound calls",
+    "solutions.features.integration": "Integration with your systems and CRM",
     
     // ProcessSection
     "process.subtitle": "Our Process",

@@ -1,4 +1,4 @@
-import { Cog, MessageSquare, BarChart, Zap, Users, Target, Link2, Play, Bell, RefreshCw, Database, FileText, LayoutDashboard, TrendingUp } from "lucide-react";
+import { Cog, MessageSquare, BarChart, Phone, Zap, Users, Target, Link2, Play, Bell, RefreshCw, Database, FileText, LayoutDashboard, TrendingUp, CheckSquare, MessageCircle, Globe } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import AnimatedBackground, { solutionsBackgroundConfig } from "./AnimatedBackground";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
@@ -138,6 +138,18 @@ const SolutionsSection = () => {
   const { t } = useLanguage();
 
   const solutions = [
+    {
+      icon: Phone,
+      titleKey: "solutions.voice.title",
+      descriptionKey: "solutions.voice.description",
+      imageSrc: agenteVoz,
+      features: [
+        { icon: CheckSquare, textKey: "solutions.features.attention" },
+        { icon: MessageCircle, textKey: "solutions.features.kb" },
+        { icon: Phone, textKey: "solutions.features.ai" },
+        { icon: Globe, textKey: "solutions.features.integration" },
+      ],
+    },
     {
       icon: MessageSquare,
       titleKey: "solutions.messaging.title",
