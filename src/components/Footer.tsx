@@ -11,7 +11,7 @@ const Footer = () => {
           {/* Social Media Icons */}
           <div className="flex items-center gap-4">
             <a
-              href="https://www.tiktok.com/@aivance"
+              href="https://www.tiktok.com/@aivancedevs"
               target="_blank"
               rel="noopener noreferrer"
               className="text-primary-foreground/70 hover:text-primary-foreground transition-colors"
@@ -27,7 +27,7 @@ const Footer = () => {
               </svg>
             </a>
             <a
-              href="https://www.instagram.com/aivance"
+              href="https://www.instagram.com/aivancedevs"
               target="_blank"
               rel="noopener noreferrer"
               className="text-primary-foreground/70 hover:text-primary-foreground transition-colors"
