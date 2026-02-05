@@ -29,7 +29,7 @@ const HeroSection = () => {
   }, [services.length]);
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
+    <section className="relative min-h-0 md:min-h-screen flex items-center justify-center pt-60 pb-20 md:pt-20 md:pb-0 overflow-hidden">
       {/* Animated background */}
       <AnimatedBackground circles={heroBackgroundConfig} />
 
@@ -41,12 +41,13 @@ const HeroSection = () => {
             background: 'linear-gradient(135deg, hsl(222 47% 10% / 0.95) 0%, hsl(222 47% 13% / 0.92) 40%, hsl(173 40% 22% / 0.88) 100%)',
           }}
         >
-          {/* Animated gradient overlay - con todas las esquinas redondeadas y menos iluminado */}
+          {/* Fondo con efecto wave en movimiento */}
           <div 
-            className="absolute inset-0 opacity-45 animate-gradient-shift rounded-[40px] lg:rounded-[50px]"
+            className="absolute inset-0 opacity-45 rounded-[40px] lg:rounded-[50px]"
             style={{
-              background: 'linear-gradient(45deg, transparent 0%, hsl(173 58% 39% / 0.16) 25%, transparent 50%, hsl(187 64% 45% / 0.12) 75%, transparent 100%)',
-              backgroundSize: '400% 400%',
+              background: 'linear-gradient(120deg, transparent 0%, hsl(173 58% 39% / 0.2) 20%, hsl(187 64% 45% / 0.22) 40%, transparent 50%, hsl(173 58% 38% / 0.18) 70%, hsl(187 64% 42% / 0.15) 85%, transparent 100%)',
+              backgroundSize: '200% 200%',
+              animation: 'hero-wave 12s ease-in-out infinite',
             }}
           />
 
@@ -129,6 +130,16 @@ const HeroSection = () => {
           background: 'linear-gradient(to top, hsl(222 47% 11%), transparent)',
         }}
       />
+
+      <style>{`
+        @keyframes hero-wave {
+          0% { background-position: 0% 50%; }
+          25% { background-position: 100% 20%; }
+          50% { background-position: 40% 100%; }
+          75% { background-position: 80% 10%; }
+          100% { background-position: 0% 50%; }
+        }
+      `}</style>
     </section>
   );
 };

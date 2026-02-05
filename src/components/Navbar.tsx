@@ -40,7 +40,7 @@ const Navbar = () => {
     { id: "services", key: "nav.problems", isRoute: false },
     { id: "solutions", key: "nav.solutions", isRoute: false },
     { id: "process", key: "nav.process", isRoute: false },
-    { id: "plantillas", key: "nav.templates", isRoute: true, path: "/plantillas" },
+    { id: "plantillas", key: "nav.templates", isRoute: true, path: "/plantillas", hidden: true }, // Oculto de momento; quitar hidden para mostrar
   ];
 
   return (
@@ -83,7 +83,7 @@ const Navbar = () => {
 
           {/* CAPA 2: Nav links — anchored center */}
           <div className="hidden md:flex items-center gap-8 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-            {navLinks.map((link) => 
+            {navLinks.filter((link) => !("hidden" in link && link.hidden)).map((link) => 
               link.isRoute ? (
                 <Link
                   key={link.id}
@@ -118,7 +118,7 @@ const Navbar = () => {
             </a>
 
             {/* Language Selector - Desktop */}
-            <DropdownMenu>
+            <DropdownMenu modal={false}>
               <DropdownMenuTrigger asChild>
                 <button className="hidden sm:flex items-center justify-center gap-1 w-[68px] text-base font-semibold px-3 py-1.5 rounded-lg border transition-all duration-300 text-primary-foreground border-accent/70 bg-accent/20 hover:bg-accent hover:text-accent-foreground shadow-lg shadow-black/20">
                   {language.toUpperCase()}
@@ -162,7 +162,7 @@ const Navbar = () => {
                 className="w-[300px] sm:w-[400px] bg-primary text-primary-foreground border-l border-primary-foreground/10 px-4 pt-8 pb-6"
               >
                 <div className="flex flex-col gap-5">
-                  {navLinks.map((link) => 
+                  {navLinks.filter((link) => !("hidden" in link && link.hidden)).map((link) => 
                     link.isRoute ? (
                       <Link
                         key={link.id}
@@ -186,7 +186,7 @@ const Navbar = () => {
                   {/* Language Selector - Mobile */}
                   <div className="flex items-center gap-2">
                     <span className="text-sm text-primary-foreground/70">{t("language.label")}</span>
-                    <DropdownMenu>
+                    <DropdownMenu modal={false}>
                       <DropdownMenuTrigger asChild>
                         <button className="flex items-center gap-1 text-base font-semibold px-3 py-2 rounded-lg border border-primary-foreground/20 bg-primary/5 hover:bg-primary-foreground/10 hover:border-primary-foreground/40 transition-all duration-300 text-primary-foreground">
                           {language.toUpperCase()}
